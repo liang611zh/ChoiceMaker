@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Making your choice!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>
+  
+  window.onload = function(){
+    //Check support
+    if(window.File && window.FileList && window.FileReader){
+        var filesInput = document.getElementById("files");
+        filesInput.addEventListener("change", function(event){
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("a");
+          
+            for(var i = 0; i< files.length; i++){
+                var file = files[i];
+                
+                //check pictures
+                if(!file.type.match('image'))
+                  continue;
+                
+                var inputReader = new FileReader();
+                
+                inputReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                    
+                    var div = document.createElement("div");
+                    
+                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "' height='80%' width='80%'/>";
+                    
+                    output.insertBefore(div,null);            
+                
+                });
+                inputReader.readAsDataURL(file);
+            }                               
+        });
+    } else{
+        console.log("Your browser does not support File API");
+    }
+}
+
+	function runChoose()
+	{
+	
+		var picArray = [];
+	
+		var input = document.getElementsByClassName( 'thumbnail' ); 
+		
+		for ( var i = 0; i < input.length; i++ ) { 
+		
+				picArray.push( input[i].src ); 
+		} 
+		
+		var randomNumber=Math.floor(Math.random()*(picArray.length));
+		document.getElementById('showResult').src = picArray[randomNumber];
+		setTimeout(2000,$(".thumbnail").fadeOut());
+
+	}
+	
+	
+</script>  
+ </head>
+ 
+ <body>
+<nav id="navbar-black" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Choice Maker</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+		  <li class="active"><a href="index.html">Home</a></li>
+		  <li><a href="index.html">Text</a></li>
+		  <li><a href="page2.html">Image</a></li>
+		  <li><a href="page3.html">Link</a></li>
+		  <li><a href="page4.html">Multiple Choices</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+	
+<div class="container">
+	<div class="col-sm-4"></div>
+	
+	<div class="col-sm-4">
+		<div class="row">
+			<div class="col-sm-6">
+				<button class="btn btn-info btn-block" onclick = "runChoose()">RUN</button>
+			</div>
+			<div class="col-sm-6">
+				<label for="files">Upload multiple images: </label>
+				<input id="files" type="file" multiple/>
+			</div>
+		</div>
+        <output id="a" />
+			<img src="" id="showResult" alt="please upload images" height="100%" width="100%"/>
+		
+		
+	</div>
+	
+	<div class="col-sm-4"></div>
+	
+	
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDUWIljuBiOb1pmhiHUGA-bO7q6fp2_GD8",
+    authDomain: "midterm-ec15a.firebaseapp.com",
+    databaseURL: "https://midterm-ec15a.firebaseio.com",
+    storageBucket: "midterm-ec15a.appspot.com",
+    messagingSenderId: "840874250040"
+  };
+  firebase.initializeApp(config);
+</script>
+</body>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Making your choice!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link id="link2" rel="stylesheet" type="text/css" href="">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+	<script>
+	
+
+	//read in array
+	
+	function newSearch(){
+		document.getElementById('link2').setAttribute('href', "#");
+		var inputArray = [];
+	
+		var input = document.getElementsByClassName( 'form-control' ); 
+		
+		for ( var i = 0; i < input.length; i++ ) { 
+		
+			if(input[i].value!='')
+				inputArray.push( input[i].value ); 
+		} 
+		
+		var randomNumber=Math.floor(Math.random()*(inputArray.length));
+		var temp=inputArray[randomNumber]
+		document.getElementById('showPic').href = temp;
+		document.getElementById('showResult').src = temp;
+
+		document.getElementById('link2').setAttribute('href', "linkAni.css");
+		
+		
+	}
+	
+	//clear all inputs
+	function clearAll(){
+	
+		var inputArray = [];
+	
+		var input = document.getElementsByClassName('form-control' ); 
+		
+		for ( var i = 0; i < input.length; i++ ) { 
+		
+			input[i].value=''
+
+		} 
+		document.getElementById('link2').setAttribute('href', "#");
+		document.getElementById('showResult').src = '#';
+		document.getElementById('showPic').setAttribute('href', "#");
+	}
+	
+	</script>
+</head>
+
+<body>
+<nav id="navbar-black" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Choice Maker</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+		  <li class="active"><a href="index.html">Home</a></li>
+		  <li><a href="index.html">Text</a></li>
+		  <li><a href="page2.html">Image</a></li>
+		  <li><a href="page3.html">Link</a></li>
+		  <li><a href="page4.html">Multiple Choices</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<div class="col-sm-4"></div>
+	
+	<div class="col-sm-4">
+	
+		<div  class="form-group">
+			<h1 id="title"> Enter Your Links</h1>
+		</div>
+		<div class="form-group">
+		    <label for="enter1">Link 1: </label>
+			<input type="text" id="enter1" name="enter1" class="form-control" value="" id="loli"/><br>
+		</div>
+		
+		<div class="form-group">
+			<label for="enter2">Link 2: </label>
+			<input type="text" id="enter2" name="enter2" class="form-control" value="" id="loli"/><br>
+		</div>
+		
+		<div class="form-group">
+			<label for="enter3">Link 3: </label>
+			<input type="text" id="enter3" name="enter3" class="form-control" value="" id="loli"/><br>
+		</div>
+		
+		<div class="form-group">
+			<label for="enter4">Link 4: </label>
+			<input type="text" id="enter4" name="enter4" class="form-control" value="" id="loli"/><br>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-6">
+				<button class="btn btn-success btn-block" onclick = "newSearch()">Go !</button>
+			</div>
+			<div class="col-sm-6">
+				<button class="btn btn-info btn-block" onclick = "clearAll()">Clear All</button>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div id="COOL" class="form-group">
+			<a id="showPic" href=""><img id="showResult" src="" alt="Your Result goes here" height="100%" width="100%" /></a>
+		</div>
+	</div>
+	
+	<div class="col-sm-4"></div>
+	
+	
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDUWIljuBiOb1pmhiHUGA-bO7q6fp2_GD8",
+    authDomain: "midterm-ec15a.firebaseapp.com",
+    databaseURL: "https://midterm-ec15a.firebaseio.com",
+    storageBucket: "midterm-ec15a.appspot.com",
+    messagingSenderId: "840874250040"
+  };
+  firebase.initializeApp(config);
+</script>
+</body>
